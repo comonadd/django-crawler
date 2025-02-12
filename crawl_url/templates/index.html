@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Crawl a URL</h2>
+    <form action="{% url 'start_crawl' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="url" class="form-label">URL to crawl...</label>
+            <input type="url" id="url" name="url" class="form-control" placeholder="Enter URL" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
