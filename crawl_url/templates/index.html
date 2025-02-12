@@ -5,13 +5,14 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Crawl a URL</h2>
-    <form action="{% url 'start_crawl' %}" method="post">
+    <form action="" method="post">
         {% csrf_token %}
         <div class="mb-3">
-            <label for="url" class="form-label">URL to crawl...</label>
+            <label for="url" class="form-label">URL to crawl</label>
             <input type="url" id="url" name="url" class="form-control" placeholder="Enter URL" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Go</button>
     </form>
 </div>
+
 {% endblock %}

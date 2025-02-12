@@ -10,3 +10,6 @@ class Task(models.Model):
 class CrawlResult(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     url = models.TextField()
+
+    class Meta:
+        unique_together = ("task", "url")

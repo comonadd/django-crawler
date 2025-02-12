@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 
 import requests
 from bs4 import BeautifulSoup
+from django.db import IntegrityError
 
 from crawler.celery import app as celery_app
 
@@ -44,11 +45,17 @@ def crawl_url(crawl_task: dict):
                 parsed = urlparse(crawl_task.url)
                 hostname_with_protocol = parsed.scheme + "://" + parsed.netloc
                 url = f"{hostname_with_protocol}{url}"
-            CrawlResult.objects.create(task_id=crawl_task.id, url=url)
-            subtask = CrawlTask(
-                id=crawl_task.id, url=url, max_depth=crawl_task.max_depth - 1
-            )
-            crawl_url.delay(subtask.model_dump())
+
+            try:
+                CrawlResult.objects.create(task_id=crawl_task.id, url=url)
+                subtask = CrawlTask(
+                    id=crawl_task.id, url=url, max_depth=crawl_task.max_depth - 1
+                )
+                crawl_url.delay(subtask.model_dump())
+            except IntegrityError:
+                pass
+            except Exception as e:
+                logger.error(f"Error creating crawl result: {e}")
 
         return {"task_id": str(crawl_task.id), "url": crawl_task.url}
     except Exception as e:

@@ -4,14 +4,13 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2>Crawl Results</h2>
+    <h2>Crawl Results (task uuid={{ results.0.task.id }})</h2>
 
     {% if results %}
     <ul class="list-group">
         {% for result in results %}
         <li class="list-group-item">
-            <strong>Task ID:</strong> {{ result.task.id }}<br>
-            <strong>URL:</strong> <a href="{{ result.url }}" target="_blank">{{ result.url }}</a>
+            <a href="{{ result.url }}" target="_blank">{{ result.url }}</a>
         </li>
         {% endfor %}
     </ul>
@@ -19,25 +18,25 @@
     <!-- Pagination -->
     <nav aria-label="Page navigation">
         <ul class="pagination mt-3">
-            {% if results.has_previous %}
+            {% if page_obj.has_previous %}
             <li class="page-item">
                 <a class="page-link" href="?page=1">First</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?page={{ results.previous_page_number }}">Previous</a>
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
             </li>
             {% endif %}
 
             <li class="page-item disabled">
-                <span class="page-link">Page {{ results.number }} of {{ results.paginator.num_pages }}</span>
+                <span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
             </li>
 
-            {% if results.has_next %}
+            {% if page_obj.has_next %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ results.next_page_number }}">Next</a>
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
             </li>
             <li class="page-item">
-                <a class="page-link" href="?page={{ results.paginator.num_pages }}">Last</a>
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
             </li>
             {% endif %}
         </ul>
