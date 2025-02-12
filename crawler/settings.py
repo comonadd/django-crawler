@@ -29,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = env("DEBUG", default=False)
 
-ALLOWED_HOSTS: List[str] = env("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS: List[str] = env("ALLOWED_HOSTS", default="*").split(",")
 
 
 # Application definition

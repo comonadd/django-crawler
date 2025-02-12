@@ -51,6 +51,12 @@ services:
     environment:
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - SECRET_KEY=django-insecure-secret-key
+      - DB_NAME=crawler
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=db
+      - DB_PORT=5432
 
 
 volumes:
