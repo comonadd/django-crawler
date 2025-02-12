@@ -4,6 +4,13 @@ WORKDIR /app
 
 COPY . .
 
+RUN rm entrypoint.sh
+
 RUN pip install -r requirements.txt
 
-CMD ["python", "main.py"]
+COPY entrypoint.sh .
+
+RUN chmod +x ./entrypoint.sh
+
+ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

@@ -3,6 +3,7 @@ annotated-types==0.7.0
 asgiref==3.8.1
 beautifulsoup4==4.13.3
 billiard==4.2.1
+black==25.1.0
 celery==5.4.0
 certifi==2025.1.31
 charset-normalizer==3.4.1
@@ -11,11 +12,19 @@ click-didyoumean==0.3.1
 click-plugins==1.1.1
 click-repl==0.3.0
 Django==5.1.6
+django-environ==0.12.0
 djantic==0.7.0
+environ==1.0
 idna==3.10
+isort==6.0.0
 kombu==5.4.2
 loguru==0.7.3
+mypy-extensions==1.0.0
+packaging==24.2
+pathspec==0.12.1
+platformdirs==4.3.6
 prompt_toolkit==3.0.50
+psycopg2-binary==2.9.10
 pydantic==2.10.6
 pydantic_core==2.27.2
 python-dateutil==2.9.0.post0
